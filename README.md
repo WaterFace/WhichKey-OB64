@@ -1,4 +1,4 @@
-#Which Key? OB64
+# Which Key? OB64
 
 An OBSE plugin that shows which key will unlock a door or container.
 
