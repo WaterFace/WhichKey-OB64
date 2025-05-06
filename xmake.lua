@@ -5,13 +5,15 @@ set_xmakever("2.8.2")
 includes("lib/commonlibob64")
 
 -- set project
-set_project("commonlibob64-template")
-set_version("0.0.0")
-set_license("GPL-3.0")
+set_project("WhichKey-OB64")
+set_version("1.0.0")
 
 -- set defaults
+set_arch("x64")
 set_languages("c++23")
-set_warnings("allextra")
+set_optimize("faster")
+set_warnings("allextra", "error")
+set_defaultmode("releasedbg")
 
 -- set policies
 set_policy("package.requires_lock", true)
@@ -21,15 +23,15 @@ add_rules("mode.debug", "mode.releasedbg")
 add_rules("plugin.vsxmake.autoupdate")
 
 -- targets
-target("commonlibob64-template")
+target("WhichKey-OB64")
     -- add dependencies to target
     add_deps("commonlibob64")
 
     -- add commonlibsse plugin
     add_rules("commonlibob64.plugin", {
-        name = "commonlibob64-template",
-        author = "qudix",
-        description = "OBSE plugin template using CommonLibOB64"
+        name = "WhichKey-OB64",
+        author = "Water Face",
+        description = "OBSE64 plugin to display the key name instead of lock level when appropriate"
     })
 
     -- add src files

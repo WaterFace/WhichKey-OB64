@@ -6,10 +6,18 @@
         ["cmake#31fecfc4"] = {
             repo = {
                 branch = "master",
-                commit = "da016bf271a4a37cd9e89cf772b0d3d730767843",
+                commit = "eb477cd7bf5b0b79515a87736c96dc4fa68449b8",
                 url = "https://gitlab.com/tboox/xmake-repo.git"
             },
-            version = "3.30.5"
+            version = "3.29.0-rc1"
+        },
+        ["ninja#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "eb477cd7bf5b0b79515a87736c96dc4fa68449b8",
+                url = "https://gitlab.com/tboox/xmake-repo.git"
+            },
+            version = "1.10.2"
         },
         ["rsm-mmio#31fecfc4"] = {
             repo = {
