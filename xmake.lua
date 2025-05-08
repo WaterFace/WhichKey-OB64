@@ -40,3 +40,10 @@ target("WhichKey-OB64")
     add_headerfiles("src/**.h")
     add_includedirs("src")
     set_pcxxheader("src/pch.h")
+
+    after_build(function(target)
+        os.cp(path.join(target:targetdir(), target:basename() .. ".dll"),
+            "$(projectdir)/output/OblivionRemastered/Binaries/Win64/OBSE/Plugins/")
+        os.cp(path.join(target:targetdir(), target:basename() .. ".pdb"),
+            "$(projectdir)/output/OblivionRemastered/Binaries/Win64/OBSE/Plugins/")
+    end)

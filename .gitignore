@@ -8,6 +8,7 @@
 # folders
 build*/
 vs*/
+output/
 
 # files
 *.zip
