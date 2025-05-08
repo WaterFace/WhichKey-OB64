@@ -6,12 +6,6 @@ struct TESFullName : BaseFormComponent {
   BSString fullName;
 };
 struct TESObjectREFR : TESForm {};
-struct TESObject : TESForm {
-  void *parentList;
-  TESObject *prev;
-  TESObject *next;
-};
-struct TESBoundObject : TESObject {};
 struct TESObjectMISC : TESBoundObject, TESFullName {};
 struct TESKey : TESObjectMISC {};
 struct REFR_LOCK {
