@@ -1,33 +1,66 @@
-#include "key_manager.h"
+#include "config.h"
 #include "types.h"
+#include "which_key.h"
 
 namespace Hooks {
 static inline REL::Relocation<RE::REFR_LOCK *(RE::TESObjectREFR *)> GetLock{REL::Offset(0x65a8670)};
 static inline REL::Relocation<const char *(RE::TESForm *)> GetFullName{REL::Offset(0x65A8170)};
-
 static inline REL::Relocation<std::int32_t(RE::Actor *, RE::TESBoundObject *)> GetItemCountInContainer{
     REL::Offset(0x65DA780)};
+static inline REL::Relocation<RE::InterfaceManager *(bool, std::uintptr_t)> InterfaceManagerInstance{
+    REL::Offset(0x6603730)};
 
-// struct Hook_ShowText {
-//   // we're deliberately ignoring that argument, that's the whole point of this hook
-// #pragma warning(suppress : 4100)
-//   static char ShowTextFunc(const char *text, RE::TESGameSoundHandle *handle, int isNotice, float showSeconds) {
-//     return ShowTextFuncHook(text, handle, 1, showSeconds);
-//   }
+struct Hook_CreateMessageMenu_DOOR {
+  using callback_fp = void();
+  static bool CreateMessageMenuFunc(
+      const void *pairingData,
+      callback_fp *fp,
+      int firstButtonResult,
+      const char *message,
+      uint64_t ok) {
+    if (WhichKey::Config::GetSingleton()->DoorMessageEnabled()) {
+      return CreateMessageMenuFuncHook(pairingData, fp, firstButtonResult, message, ok);
+    } else {
+      if (WhichKey::Config::GetSingleton()->OpenDoorAfterUnlock()) {
+        // call the callback directly to actually use the door after unlocking it
+        // the callback expects this to be set, then clears it appropriately
+        InterfaceManagerInstance(0, 1)->lastMessageButtonClicked = 1;
+        fp();
+      } else {
+        // TODO: play sound?
+      }
+      return true;
+    }
+  }
 
-//   static inline REL::Hook ShowTextFuncHook{REL::Offset(0x67580a0), 0x108, ShowTextFunc};
-// };
+  static inline REL::Hook CreateMessageMenuFuncHook{REL::Offset(0x67580a0), 0x44c, CreateMessageMenuFunc};
+};
 
-// struct Hook_CreateMessageMenu {
-// #pragma warning(suppress : 4100)
-//   static bool CreateMessageMenuFunc(void *pairingData, void *fp, int firstButtonResult, const char *message, int idk)
-//   {
-//     // do nothing
-//     return false;
-//   }
+struct Hook_CreateMessageMenu_CONT {
+  using callback_fp = void();
+  static bool CreateMessageMenuFunc(
+      const char *text,
+      callback_fp *fp,
+      int firstButtonResult,
+      const char *message,
+      uint64_t ok) {
+    if (WhichKey::Config::GetSingleton()->ContMessageEnabled()) {
+      return CreateMessageMenuFuncHook(text, fp, firstButtonResult, message, ok);
+    } else {
+      if (WhichKey::Config::GetSingleton()->OpenContAfterUnlock()) {
+        // call the callback directly to actually use the Container after unlocking it
+        // the callback expects this to be set, then clears it appropriately
+        InterfaceManagerInstance(0, 1)->lastMessageButtonClicked = 1;
+        fp();
+      } else {
+        // TODO: play sound?
+      }
+      return true;
+    }
+  }
 
-//   static inline REL::Hook CreateMessageMenuFuncHook{REL::Offset(0x67580a0), 0x286, CreateMessageMenuFunc};
-// };
+  static inline REL::Hook CreateMessageMenuFuncHook{REL::Offset(0x6968e30), 0x177, CreateMessageMenuFunc};
+};
 
 struct Hook_SPrintF {
   static std::int64_t BSStringSPrintFFunc(RE::BSString &outName, const char *fmtString, const char *arg) {
@@ -35,7 +68,7 @@ struct Hook_SPrintF {
     auto key = WhichKey::KeyManager::GetSingleton()->GetSavedKey();
     if (key) {
 
-      auto player = RE::TESForm::LookupByID<RE::PlayerCharacter>(0x14);
+      auto player = WhichKey::GetPlayerCharacter();
 
       auto playerHasKey = GetItemCountInContainer(player, key) > 0;
       if (playerHasKey) {
@@ -66,6 +99,11 @@ struct Hook_SetInfoForRef {
 
 OBSE_PLUGIN_LOAD(const OBSE::LoadInterface *a_obse) {
   OBSE::Init(a_obse, {.trampoline = true, .trampolineSize = 64});
+
+  // initialize config
+  WhichKey::Config::GetSingleton();
+  REX::INFO("door message enabled = {}", WhichKey::Config::GetSingleton()->DoorMessageEnabled());
+  REX::INFO("cont message enabled = {}", WhichKey::Config::GetSingleton()->ContMessageEnabled());
 
   return true;
 }

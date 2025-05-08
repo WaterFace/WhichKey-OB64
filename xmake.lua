@@ -6,7 +6,7 @@ includes("lib/commonlibob64")
 
 -- set project
 set_project("WhichKey-OB64")
-set_version("1.0.0")
+set_version("1.1.0")
 
 -- set defaults
 set_arch("x64")
@@ -25,6 +25,7 @@ add_rules("plugin.vsxmake.autoupdate")
 -- targets
 target("WhichKey-OB64")
     -- add dependencies to target
+    add_options("rex_ini")
     add_deps("commonlibob64")
 
     -- add commonlibsse plugin

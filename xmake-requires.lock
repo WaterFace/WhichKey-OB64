@@ -27,6 +27,14 @@
             },
             version = "2.0.0"
         },
+        ["simpleini#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "eb477cd7bf5b0b79515a87736c96dc4fa68449b8",
+                url = "https://gitlab.com/tboox/xmake-repo.git"
+            },
+            version = "v4.22"
+        },
         ["spdlog#9c36f0a9"] = {
             repo = {
                 branch = "master",
