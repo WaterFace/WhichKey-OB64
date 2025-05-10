@@ -68,7 +68,7 @@ struct Hook_SPrintF {
     auto key = WhichKey::KeyManager::GetSingleton()->GetSavedKey();
     if (key) {
 
-      auto player = WhichKey::GetPlayerCharacter();
+      auto player = RE::PlayerCharacter::GetSingleton();
 
       auto playerHasKey = GetItemCountInContainer(player, key) > 0;
       if (playerHasKey) {
