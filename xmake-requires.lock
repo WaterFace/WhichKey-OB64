@@ -31,7 +31,7 @@
             repo = {
                 branch = "master",
                 commit = "3427acee717ebe6653f0b97415d0208cfe0eab4e",
-                url = "https://github.com/xmake-io/xmake-repo.git"
+                url = "https://gitlab.com/tboox/xmake-repo.git"
             },
             version = "v4.22"
         },

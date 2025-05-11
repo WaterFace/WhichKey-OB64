@@ -25,7 +25,6 @@ add_rules("plugin.vsxmake.autoupdate")
 -- targets
 target("WhichKey-OB64")
     -- add dependencies to target
-    add_options("rex_ini")
     add_deps("commonlibob64")
 
     -- add commonlibsse plugin
