@@ -2,8 +2,6 @@
 
 namespace RE
 {
-	struct HUDInfoMenu
-	{};
 	struct REFR_LOCK
 	{
 		char    base_level;
