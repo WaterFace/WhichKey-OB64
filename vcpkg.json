@@ -1,0 +1,26 @@
+{
+    "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+    "name": "which-key-ob64",
+    "version-string": "1.1.0",
+    "port-version": 0,
+    "description": "A plugin that shows which key will open a locked door or container.",
+    "license": null,
+    "dependencies": [
+        "rsm-mmio",
+        {
+            "name": "spdlog",
+            "features": [
+                "wchar"
+            ]
+        },
+        "simpleini"
+    ],
+    "features": {
+        "plugin": {
+            "description": "Build the SKSE plugin."
+        }
+    },
+    "default-features": [
+        "plugin"
+    ]
+}
