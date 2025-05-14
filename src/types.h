@@ -8,16 +8,6 @@ namespace RE
 		TESKey* key;
 		char    flags;
 	};
-	struct BSExtraData
-	{
-		void*        vtable;
-		std::uint8_t EType;
-		BSExtraData* next;
-	};
-	struct TESGameSoundHandle
-	{};
-	struct InventoryChanges
-	{};
 
 	struct InterfaceManager
 	{
