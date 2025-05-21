@@ -9,9 +9,6 @@ namespace Hooks
 	static inline REL::Relocation<std::int32_t(RE::Actor*, RE::TESBoundObject*)> GetItemCountInContainer{
 		REL::Offset(0x65DA780)
 	};
-	static inline REL::Relocation<RE::InterfaceManager*(bool, std::uintptr_t)> InterfaceManagerInstance{
-		REL::Offset(0x6603730)
-	};
 
 	struct Hook_CreateMessageMenu_DOOR
 	{
@@ -29,7 +26,7 @@ namespace Hooks
 				if (WhichKey::Config::GetSingleton()->OpenDoorAfterUnlock()) {
 					// call the callback directly to actually use the door after unlocking it
 					// the callback expects this to be set, then clears it appropriately
-					InterfaceManagerInstance(0, 1)->lastMessageButtonClicked = 1;
+					RE::InterfaceManager::GetInstance(false, true)->lastMessageButtonClicked = 1;
 					fp();
 				} else {
 					// TODO: play sound?
@@ -57,7 +54,7 @@ namespace Hooks
 				if (WhichKey::Config::GetSingleton()->OpenContAfterUnlock()) {
 					// call the callback directly to actually use the Container after unlocking it
 					// the callback expects this to be set, then clears it appropriately
-					InterfaceManagerInstance(0, 1)->lastMessageButtonClicked = 1;
+					RE::InterfaceManager::GetInstance(false, true)->lastMessageButtonClicked = 1;
 					fp();
 				} else {
 					// TODO: play sound?

@@ -8,11 +8,4 @@ namespace RE
 		TESKey* key;
 		char    flags;
 	};
-
-	struct InterfaceManager
-	{
-		uint8_t pad[0x128];
-		uint8_t lastMessageButtonClicked;
-	};
-
 };  // namespace RE
