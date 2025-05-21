@@ -4,11 +4,7 @@
 
 namespace Hooks
 {
-	static inline REL::Relocation<RE::REFR_LOCK*(RE::TESObjectREFR*)>            GetLock{ REL::Offset(0x65a8670) };
-	static inline REL::Relocation<const char*(RE::TESForm*)>                     GetFullName{ REL::Offset(0x65A8170) };
-	static inline REL::Relocation<std::int32_t(RE::Actor*, RE::TESBoundObject*)> GetItemCountInContainer{
-		REL::Offset(0x65DA780)
-	};
+	static inline REL::Relocation<RE::REFR_LOCK*(RE::TESObjectREFR*)> GetLock{ REL::Offset(0x65a8670) };
 
 	struct Hook_CreateMessageMenu_DOOR
 	{
@@ -71,14 +67,9 @@ namespace Hooks
 		static std::int64_t BSStringSPrintFFunc(RE::BSString& outName, const char* fmtString, const char* arg)
 		{
 			auto key = WhichKey::KeyManager::GetSingleton()->GetSavedKey();
-			if (key) {
-				auto player = RE::PlayerCharacter::GetSingleton();
-
-				auto playerHasKey = GetItemCountInContainer(player, key) > 0;
-				if (playerHasKey) {
-					if (auto keyName = GetFullName(key); keyName) {
-						return BSStringSPrintFFuncHook(outName, fmtString, keyName);
-					}
+			if (key && RE::PlayerCharacter::GetSingleton()->GetItemCountInContainer(key) > 0) {
+				if (auto keyName = RE::TESFullName::GetFullName(key); keyName) {
+					return BSStringSPrintFFuncHook(outName, fmtString, keyName);
 				}
 			}
 
