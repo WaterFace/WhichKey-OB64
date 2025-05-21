@@ -1,10 +1,16 @@
 cmake_minimum_required(VERSION 3.21.0)
 project(
-  WhichKeyOB64
-  VERSION 1.1.0
+  WhichKey-OB64
+  VERSION 1.2.0
   DESCRIPTION
     "OBSE64 plugin to display the key name instead of lock level when appropriate"
   LANGUAGES CXX)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/plugin.rc.in
+               ${CMAKE_CURRENT_BINARY_DIR}/plugin.rc @ONLY)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/plugin.cpp.in
+               ${CMAKE_CURRENT_BINARY_DIR}/plugin.cpp @ONLY)
 
 set(REX_OPTION_INI
     ON
@@ -16,11 +22,14 @@ add_library(
   simpleini INTERFACE ${SIMPLEINI_INCLUDE_DIR}/SimpleIni.h
   ${SIMPLEINI_INCLUDE_DIR}/ConvertUTF.c ${SIMPLEINI_INCLUDE_DIR}/ConvertUTF.h)
 
-set(SOURCES src/main.cpp src/types.h src/config.h src/which_key.h)
+set(SOURCES
+    ${CMAKE_CURRENT_BINARY_DIR}/plugin.rc
+    ${CMAKE_CURRENT_BINARY_DIR}/plugin.cpp src/main.cpp src/types.h
+    src/config.h src/which_key.h)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
-target_precompile_headers(${PROJECT_NAME} PUBLIC src/pch.h)
-target_link_libraries(${PROJECT_NAME} CommonLibOB64)
-target_link_libraries(${PROJECT_NAME} simpleini)
+target_precompile_headers(${PROJECT_NAME} PRIVATE src/pch.h)
+target_link_libraries(${PROJECT_NAME} PRIVATE CommonLibOB64)
+target_link_libraries(${PROJECT_NAME} PRIVATE simpleini)
 
 if(CMAKE_EXPORT_COMPILE_COMMANDS)
   execute_process(
