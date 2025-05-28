@@ -1,0 +1,38 @@
+{
+    __meta__ = {
+        version = "1.0"
+    },
+    ["windows|x64"] = {
+        ["cmake#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "eb477cd7bf5b0b79515a87736c96dc4fa68449b8",
+                url = "https://gitlab.com/tboox/xmake-repo.git"
+            },
+            version = "3.30.5-msvc23"
+        },
+        ["commonlib-shared d81a6748c1316d9ff731d2a5dd1e6f017be45ce9#0defcfe0"] = {
+            repo = {
+                commit = "47eca6ffcb79208b9f757df369b2ddad322aac16",
+                url = "https://github.com/libxse/libxse-xrepo"
+            },
+            version = "d81a6748"
+        },
+        ["ninja#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "eb477cd7bf5b0b79515a87736c96dc4fa68449b8",
+                url = "https://gitlab.com/tboox/xmake-repo.git"
+            },
+            version = "1.12.1"
+        },
+        ["spdlog#9c36f0a9"] = {
+            repo = {
+                branch = "master",
+                commit = "da016bf271a4a37cd9e89cf772b0d3d730767843",
+                url = "https://gitlab.com/tboox/xmake-repo.git"
+            },
+            version = "v1.15.2"
+        }
+    }
+}

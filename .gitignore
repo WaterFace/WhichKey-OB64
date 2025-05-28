@@ -9,7 +9,6 @@
 build*/
 vs*/
 output/
-vcpkg_installed/
 
 # files
 *.zip
