@@ -25,8 +25,6 @@ add_rules("plugin.vsxmake.autoupdate")
 -- enable ini support in commonlibob64
 set_config("commonlib_ini", true)
 
-add_defines("NOMINMAX")
-
 -- targets
 target("WhichKey-OB64")
     -- add dependencies to target

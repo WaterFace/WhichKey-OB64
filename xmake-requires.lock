@@ -9,22 +9,22 @@
                 commit = "eb477cd7bf5b0b79515a87736c96dc4fa68449b8",
                 url = "https://gitlab.com/tboox/xmake-repo.git"
             },
-            version = "3.30.5-msvc23"
+            version = "3.31.6-msvc6"
         },
-        ["commonlib-shared d81a6748c1316d9ff731d2a5dd1e6f017be45ce9#0defcfe0"] = {
+        ["commonlib-shared f420a9457fe6aecb2ed9f259f788476e589fb46e#2add50e2"] = {
             repo = {
                 commit = "47eca6ffcb79208b9f757df369b2ddad322aac16",
                 url = "https://github.com/libxse/libxse-xrepo"
             },
-            version = "d81a6748"
+            version = "f420a945"
         },
-        ["ninja#31fecfc4"] = {
+        ["simpleini#31fecfc4"] = {
             repo = {
                 branch = "master",
-                commit = "eb477cd7bf5b0b79515a87736c96dc4fa68449b8",
+                commit = "3427acee717ebe6653f0b97415d0208cfe0eab4e",
                 url = "https://gitlab.com/tboox/xmake-repo.git"
             },
-            version = "1.12.1"
+            version = "v4.22"
         },
         ["spdlog#9c36f0a9"] = {
             repo = {
