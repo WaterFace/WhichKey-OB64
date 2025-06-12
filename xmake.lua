@@ -34,7 +34,10 @@ target("WhichKey-OB64")
     add_rules("commonlibob64.plugin", {
         name = "WhichKey-OB64",
         author = "Water Face",
-        description = "OBSE64 plugin to display the key name instead of lock level when appropriate"
+        description = "OBSE64 plugin to display the key name instead of lock level when appropriate",
+        options = {
+            address_library = true,
+        }
     })
 
     -- add src files

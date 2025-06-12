@@ -31,7 +31,7 @@ namespace Hooks
 			}
 		}
 
-		static inline REL::Hook CreateMessageMenuFuncHook{ REL::Offset(0x67580a0), 0x44c, CreateMessageMenuFunc };
+		static inline REL::Hook CreateMessageMenuFuncHook{ REL::ID(409981), 0x44c, CreateMessageMenuFunc };
 	};
 
 	struct Hook_CreateMessageMenu_CONT
@@ -59,7 +59,7 @@ namespace Hooks
 			}
 		}
 
-		static inline REL::Hook CreateMessageMenuFuncHook{ REL::Offset(0x6968e30), 0x177, CreateMessageMenuFunc };
+		static inline REL::Hook CreateMessageMenuFuncHook{ REL::ID(417896), 0x177, CreateMessageMenuFunc };
 	};
 
 	struct Hook_SPrintF
@@ -76,7 +76,7 @@ namespace Hooks
 			return BSStringSPrintFFuncHook(outName, fmtString, arg);
 		}
 
-		static inline REL::Hook BSStringSPrintFFuncHook{ REL::Offset(0x6912370), 0xEB6, BSStringSPrintFFunc };
+		static inline REL::Hook BSStringSPrintFFuncHook{ REL::ID(416127), 0xEB6, BSStringSPrintFFunc };
 	};
 
 	struct Hook_SetInfoForRef
@@ -89,7 +89,7 @@ namespace Hooks
 			return SetInfoForRefFuncHook(a_object, a_telekinesis, a_sameOkay);
 		}
 
-		static inline REL::Hook SetInfoForRefFuncHook{ REL::Offset(0x65ffbc0), 0x63, SetInfoForRefFunc };
+		static inline REL::Hook SetInfoForRefFuncHook{ REL::ID(406425), 0x63, SetInfoForRefFunc };
 	};
 
 }  // namespace Hooks
@@ -100,8 +100,6 @@ OBSE_PLUGIN_LOAD(const OBSE::LoadInterface* a_obse)
 
 	// initialize config
 	WhichKey::Config::GetSingleton();
-	REX::INFO("door message enabled = {}", WhichKey::Config::GetSingleton()->DoorMessageEnabled());
-	REX::INFO("cont message enabled = {}", WhichKey::Config::GetSingleton()->ContMessageEnabled());
 
 	return true;
 }
