@@ -6,10 +6,10 @@
         ["cmake#31fecfc4"] = {
             repo = {
                 branch = "master",
-                commit = "eb477cd7bf5b0b79515a87736c96dc4fa68449b8",
+                commit = "e4c278c2556a5db201bbb0ddcaf145ba7e9614a3",
                 url = "https://gitlab.com/tboox/xmake-repo.git"
             },
-            version = "4.0.2"
+            version = "3.29.0-rc1"
         },
         ["commonlib-shared ce4414f593ae9c0c084c5b44e4be8620630e5921#2add50e2"] = {
             repo = {
@@ -18,10 +18,18 @@
             },
             version = "ce4414f5"
         },
+        ["ninja#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "e4c278c2556a5db201bbb0ddcaf145ba7e9614a3",
+                url = "https://gitlab.com/tboox/xmake-repo.git"
+            },
+            version = "1.10.2"
+        },
         ["simpleini#31fecfc4"] = {
             repo = {
                 branch = "master",
-                commit = "3427acee717ebe6653f0b97415d0208cfe0eab4e",
+                commit = "eb477cd7bf5b0b79515a87736c96dc4fa68449b8",
                 url = "https://gitlab.com/tboox/xmake-repo.git"
             },
             version = "v4.22"
